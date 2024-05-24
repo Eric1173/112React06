@@ -1,3 +1,6 @@
+/**
+ * @author Lai Yi Qun <B11117006@gemail.yuntech.edu.tw>
+ */
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Flowbite } from "flowbite-react";

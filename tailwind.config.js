@@ -1,3 +1,6 @@
+/**
+ * @author Lai Yi Qun <B11117006@gemail.yuntech.edu.tw>
+ */
 const flowbite = require("flowbite-react/tailwind");
 
 /** @type {import('tailwindcss').Config} */

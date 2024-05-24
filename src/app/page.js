@@ -1,3 +1,6 @@
+/**
+ * @author Lai Yi Qun <B11117006@gemail.yuntech.edu.tw>
+ */
 import Image from "next/image";
 import { Button } from "flowbite-react";
 import Link from "next/link";
@@ -19,6 +22,25 @@ import { Card } from "flowbite-react";
 import { DarkThemeToggle } from "flowbite-react";
 
 export default function Home() {
+
+  const items = [
+    {
+      cover: "/place.avif",
+      name: "Ali Mountain",
+      description: "high",
+    },
+    {
+      cover: "/place.avif",
+      name: "Green Island",
+      description: "boat",
+    },
+    {
+      cover: "/place.avif",
+      name: "North Head Spring",
+      description: "hot",
+    },
+  ];
+
   return (
     <>
       <div className="bg-[#EE6D8D]">
@@ -51,27 +73,55 @@ export default function Home() {
         </div>
       </div>
       
-      
-      
       <div className="h-56 sm:h-64 xl:h-80 2xl:h-screen bg-[#F4A7B9]">
         <Carousel>
-          <img src="https://i.pinimg.com/564x/56/52/66/565266c6bd09b302ce096ad86e6e4dfd.jpg" className="flex h-full w-auto " alt="..." />
-          <img src="https://i.pinimg.com/564x/fc/b0/e6/fcb0e64ed6e6b44612a9198f2c0a8b0f.jpg" className="flex h-full w-auto" alt="..." />
-          <img src="https://i.pinimg.com/564x/44/68/98/44689878b2de08cabd23ff2c31658ce5.jpg" className="flex h-full w-auto" alt="..." />
-          <img src="https://i.pinimg.com/564x/f6/47/6a/f6476adbe036218886edf37cc17c5a31.jpg" className="flex h-full w-auto" alt="..." />
-          <img src="https://i.pinimg.com/564x/c6/e8/51/c6e8510425bac642903930ae8dfd71fd.jpg" className="flex h-full w-auto" alt="..." />
+          <img src="/sky1.jfif" className="flex h-full w-auto" alt="https://i.pinimg.com/564x/56/52/66/565266c6bd09b302ce096ad86e6e4dfd.jpg" />
+          <img src="/sky2.jpg" className="flex h-full w-auto" alt="https://i.pinimg.com/564x/fc/b0/e6/fcb0e64ed6e6b44612a9198f2c0a8b0f.jpg" />
+          <img src="/sky3.jpg" className="flex h-full w-auto" alt="https://i.pinimg.com/564x/44/68/98/44689878b2de08cabd23ff2c31658ce5.jpg" />
+          <img src="/sky4.jpg" className="flex h-full w-auto" alt="https://i.pinimg.com/564x/f6/47/6a/f6476adbe036218886edf37cc17c5a31.jpg" />
+          <img src="/sky5.jpg" className="flex h-full w-auto" alt="https://i.pinimg.com/564x/c6/e8/51/c6e8510425bac642903930ae8dfd71fd.jpg" />
         </Carousel>
       </div>
 
-      <div className="bg-white">
-        <Card href="#" className="max-w-sm">
-          <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-            Hey
-          </h5>
-          <p className="font-normal text-gray-700 dark:text-gray-400">
-            Card content has been active
-          </p>
-        </Card>
+      <div className="bg-white py-16">
+        <div className="container mx-auto grid grid-cols-4 gap-4">
+          {items.map( item =>
+            <Card href="#" 
+              className="max-w-sm"
+              imgAlt={item.name}
+              imgSrc={item.cover}  
+              >
+              <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                {item.name}
+              </h5>
+              <p className="font-normal text-gray-700 dark:text-gray-400">
+                {item.description}
+              </p>
+              <button type="button" 
+                class="text-white 
+                  bg-gradient-to-r
+                  from-purple-500
+                  to-pink-500
+                  hover:bg-gradient-to-l
+                  focus:ring-4
+                  focus:outline-none
+                  focus:ring-purple-200
+                  dark:focus:ring-purple-800
+                  font-medium
+                  rounded-lg
+                  text-sm
+                  px-5
+                  py-2.5
+                  text-center
+                  me-2
+                  mb-2"
+                >
+                More Imformation
+              </button>
+            </Card>
+          )}
+        </div>
+          
       </div>
       
       
