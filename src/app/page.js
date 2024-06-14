@@ -29,26 +29,14 @@ import { useState, useEffect } from "react";
 export default function Home() {
 
   const [items, setItems] = useState([]);
-  const tokenURL = 'https://tdx.transportdata.tw/auth/realms/TDXConnect/protocol/openid-connect/token';
-  const apiURL = 'https://tdx.transportdata.tw/api/basic/v2/Tourism/ScenicSpot/YunlinCounty';
   useEffect(() => {
-    const getToken = async () => {
-      const clientId = process.env.TDX_CLIENT_ID;
-      const clientSecret = process.env.TDX_CLIENT_SECRET;
-
-      const tokenParams = new URLSearchParams();
-      tokenParams.append('grant_type', 'client_credentials')
-      tokenParams.append('client_id', clientId);
-      tokenParams.append('client_secret', clientSecret);
-
-      const tokenResponse = await fetch(tokenURL,{
-        method: 'POST',
-        headers: {
-          'content-type': 'application/x-www-form-urlencoded'
-        },
-        body: tokenParams.toString()
-      });
-    };
+    async function fetchData(){
+      const response = await fetch('api/items');
+      const data = await response.json();
+      console.log(data);
+      setItems(data);
+    }
+    fetchData();
   }, []);
 
   return (
@@ -57,7 +45,7 @@ export default function Home() {
         <div className="container mx-auto">
           <Navbar fluid className="bg-[#EE6D8D]">
             <NavbarBrand as={Link} href="/">
-              <img src="https://i.pinimg.com/564x/fc/61/2c/fc612c8657ee61a816b182f91fdb5a9f.jpg" className="mr-3 h-6 sm:h-9" alt="" />
+              <Image width={500} height={500} src="/fc612c8657ee61a816b182f91fdb5a9f.jpg" className="mr-3 h-6 sm:h-9" alt="cover" />
               <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">資工磨大米</span>
             </NavbarBrand>
             <NavbarToggle />
@@ -85,19 +73,19 @@ export default function Home() {
       
       <div className="h-56 sm:h-64 xl:h-80 2xl:h-screen bg-[#F4A7B9]">
         <Carousel>
-          <img src="/sky1.jfif" className="flex h-full w-auto" alt="https://i.pinimg.com/564x/56/52/66/565266c6bd09b302ce096ad86e6e4dfd.jpg" />
-          <img src="/sky2.jpg" className="flex h-full w-auto" alt="https://i.pinimg.com/564x/fc/b0/e6/fcb0e64ed6e6b44612a9198f2c0a8b0f.jpg" />
-          <img src="/sky3.jpg" className="flex h-full w-auto" alt="https://i.pinimg.com/564x/44/68/98/44689878b2de08cabd23ff2c31658ce5.jpg" />
-          <img src="/sky4.jpg" className="flex h-full w-auto" alt="https://i.pinimg.com/564x/f6/47/6a/f6476adbe036218886edf37cc17c5a31.jpg" />
-          <img src="/sky5.jpg" className="flex h-full w-auto" alt="https://i.pinimg.com/564x/c6/e8/51/c6e8510425bac642903930ae8dfd71fd.jpg" />
+          <Image width={500} height={500} src="/sky1.jfif" className="flex h-full w-auto" alt="https://i.pinimg.com/564x/56/52/66/565266c6bd09b302ce096ad86e6e4dfd.jpg" />
+          <Image width={500} height={500} src="/sky2.jpg" className="flex h-full w-auto" alt="https://i.pinimg.com/564x/fc/b0/e6/fcb0e64ed6e6b44612a9198f2c0a8b0f.jpg" />
+          <Image width={500} height={500} src="/sky3.jpg" className="flex h-full w-auto" alt="https://i.pinimg.com/564x/44/68/98/44689878b2de08cabd23ff2c31658ce5.jpg" />
+          <Image width={500} height={500} src="/sky4.jpg" className="flex h-full w-auto" alt="https://i.pinimg.com/564x/f6/47/6a/f6476adbe036218886edf37cc17c5a31.jpg" />
+          <Image width={500} height={500} src="/sky5.jpg" className="flex h-full w-auto" alt="https://i.pinimg.com/564x/c6/e8/51/c6e8510425bac642903930ae8dfd71fd.jpg" />
         </Carousel>
       </div>
 
       <div className="container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           {
-            items.map( item =>
-              <CustomCard item={item}/>
+            items.map( (item, index) =>
+              <CustomCard item={item} key={index}/>
             )
           }
         </div>
