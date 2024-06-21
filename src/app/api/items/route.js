@@ -1,3 +1,6 @@
+/**
+ * @author Lai Yi Qun <B11117006@gemail.yuntech.edu.tw>
+ */
 export async function GET() {
     // 1. get access token
     const token = await getToken();
